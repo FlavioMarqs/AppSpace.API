@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <AssemblyName>AppSpace.API.Client</AssemblyName>
+	  <RootNameSpace>AppSpace.API.Client</RootNameSpace>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppSpace.API.Contracts\AppSpace.API.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
