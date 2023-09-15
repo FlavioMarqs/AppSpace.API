@@ -2,3 +2,6 @@ source https://api.nuget.org/v3/index.json
 
 storage: none
 framework: net5.0, netcoreapp3.1
+
+nuget RestSharp
+nuget Microsoft.Extensions.DependencyInjection
