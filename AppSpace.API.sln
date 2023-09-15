@@ -15,12 +15,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3ED6F810-74E5-45A6-B464-55E84575AA50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{D6CC7651-A92B-467C-915B-50A2ABB16FE9}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSpace.API.Client", "src\AppSpace.API.Client\AppSpace.API.Client.csproj", "{2AB2E205-CA88-4E8A-AA6C-9F87AD225FD4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSpace.API.Contracts", "src\AppSpace.API.Contracts\AppSpace.API.Contracts.csproj", "{9F6B222A-C9D9-4D14-85C2-04C6184538B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSpace.TMDB.Client", "src\AppSpace.TMDB.Client\AppSpace.TMDB.Client.csproj", "{F0088CED-4C52-4578-BFAA-17381DE51985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSpace.TMDB.Client", "src\AppSpace.TMDB.Client\AppSpace.TMDB.Client.csproj", "{F0088CED-4C52-4578-BFAA-17381DE51985}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TMDBApi", "TMDBApi", "{ED870461-22BC-49F8-AA1D-3150FBC5AED5}"
 EndProject
