@@ -35,13 +35,16 @@ namespace AppsSpace.TMDB.Client.IntegrationTests
             response.StatusMessage.Should().Be("Success.");
         }
 
-        [Test]
-        public async Task DiscoverMoviesAsync_Should_Return_Valid_Response()
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public async Task DiscoverMoviesAsync_Should_Return_Valid_Response(int pageNumber)
         {
             PaginatedResult<TMDBMovieResponse> response = null;
-            Assert.DoesNotThrowAsync(async () => response = await _client.GetMovieDiscovery(1));
+            Assert.DoesNotThrowAsync(async () => response = await _client.GetMovieDiscovery(pageNumber));
             response.Should().NotBeNull();
-
+            response.PageNumber.Should().Be(pageNumber);
+            response.Results.Should().HaveCount(20);
         }
     }
 }

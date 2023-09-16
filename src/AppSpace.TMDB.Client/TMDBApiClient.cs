@@ -33,6 +33,7 @@ namespace AppSpace.TMDB.Client
             var options = new RestClientOptions(_options.DiscoverMoviesUrl);
             var restClient = new RestClient(options);
             var request = new RestRequest("");
+            request.AddParameter("page", pageNumber);
             request.AddHeader("accept", "application/json");
             request.AddHeader("Authorization", $"Bearer {_options.ApiToken}");
             var response = await restClient.GetAsync(request);
