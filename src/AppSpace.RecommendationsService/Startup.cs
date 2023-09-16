@@ -22,9 +22,11 @@ namespace AppSpace.RecommendationsService
         {
 
             services.AddLogging();
-            services.AddHandlers();
+            services.AddControllers();
+            services.AddSwaggerGen();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddTransient<RecommendationsController>();
+
+            services.AddHandlers();
         }
     }
 }
