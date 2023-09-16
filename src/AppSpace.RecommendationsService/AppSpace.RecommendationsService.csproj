@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>AppSpace.RecommendationsService</AssemblyName>
+    <RootNameSpace>AppSpace.RecommendationsService</RootNameSpace>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppSpace.API.Contracts\AppSpace.API.Contracts.csproj" />
+    <ProjectReference Include="..\AppSpace.Handlers\AppSpace.Handlers.csproj" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

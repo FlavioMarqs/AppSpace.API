@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AppSpace.API.Contracts.Responses
 {
-    public interface ISmartBillboard
+    public class SmartBillboardResponse
     {
     }
 }
