@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppsSpace.TMDB.Client.IntegrationTests
 {
-    public class Tests
+    public class TMDBApiClientTests
     {
         private ITMDBApiClient _client;
 
