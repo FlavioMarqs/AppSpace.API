@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>AppSpace.Handlers</AssemblyName>
+    <RootNameSpace>AppSpace.Handlers</RootNameSpace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppSpace.TMDB.Client\AppSpace.TMDB.Client.csproj" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>
