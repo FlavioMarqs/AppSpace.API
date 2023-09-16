@@ -4,26 +4,39 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Collections.Generic;
 using AppSpace.TMDB.Contracts.Responses;
+using AppSpace.TMDB.Client.Interfaces;
+
 namespace AppSpace.TMDB.Client
 {
     public class TMDBApiClient : ITMDBApiClient
     {
         private readonly ITMDBApiClientOptions _options;
-        private readonly RestClient _restClient;
 
         public TMDBApiClient(ITMDBApiClientOptions options) 
         { 
             _options = options ?? throw new ArgumentNullException(nameof(options));
-            var restClientOptions = new RestClientOptions(_options.AuthenticationUrl);
-            _restClient = new RestClient(restClientOptions);
         }
 
-        public async Task<IEnumerable<ITMDBMovieResponse>> GetMovieDiscovery()
+        public async Task<AuthenticationResponse> AuthenticateAsync()
         {
+            var options = new RestClientOptions(_options.AuthenticationUrl);
+            var restClient = new RestClient(options);
             var request = new RestRequest("");
             request.AddHeader("accept", "application/json");
-            var response = await _restClient.GetAsync(request);
-            return JsonSerializer.Deserialize<IEnumerable<ITMDBMovieResponse>>(response.Content);
+            request.AddHeader("Authorization", $"Bearer {_options.ApiToken}");
+            var response = await restClient.GetAsync(request);
+            return JsonSerializer.Deserialize<AuthenticationResponse>(response.Content);
+        }
+
+        public async Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscovery(int pageNumber)
+        {
+            var options = new RestClientOptions(_options.DiscoverMoviesUrl);
+            var restClient = new RestClient(options);
+            var request = new RestRequest("");
+            request.AddHeader("accept", "application/json");
+            request.AddHeader("Authorization", $"Bearer {_options.ApiToken}");
+            var response = await restClient.GetAsync(request);
+            return JsonSerializer.Deserialize<PaginatedResult<TMDBMovieResponse>>(response.Content);
         }
     }
 }

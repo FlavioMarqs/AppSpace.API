@@ -1,7 +1,32 @@
 source https://api.nuget.org/v3/index.json
 
 storage: none
-framework: net5.0, netcoreapp3.1
+framework: net6.0, net5.0, netcoreapp3.1
 
-nuget RestSharp
+nuget Autofac
+nuget AutoMapper
+nuget AutoMapper.Extensions.Microsoft.DependencyInjection
+nuget Microsoft.AspNetCore.Mvc
+nuget Microsoft.EntityFrameworkCore !~> 7.0.10
+nuget Microsoft.EntityFrameworkCore.SqlServer
+nuget Microsoft.Extensions.Configuration
 nuget Microsoft.Extensions.DependencyInjection
+nuget Microsoft.Extensions.Hosting
+nuget RestSharp
+nuget Swashbuckle.AspNetCore
+nuget Microsoft.NETCore.App
+
+group tests
+
+
+group Tests
+source https://api.nuget.org/v3/index.json
+framework: net6.0, net5.0, netcoreapp3.1
+
+nuget coverlet.collector
+nuget FluentAssertions
+nuget Moq
+nuget NUnit
+nuget NUnit3TestAdapter
+nuget Microsoft.Net.Test.Sdk
+nuget Microsoft.NETCore.App

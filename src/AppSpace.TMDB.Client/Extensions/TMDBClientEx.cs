@@ -1,17 +1,29 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.Extensions.Configuration;
+using AppSpace.TMDB.Client.Interfaces;
 
 namespace AppSpace.TMDB.Client.Extensions
 {
     public static class TMDBClientEx
     {
-        public static IServiceCollection AddTMDBClientOptions(IServiceCollection services, ITMDBApiClientOptions options)
+        private const string ApiKey = "ApiKey";
+        private const string ApiToken = "ApiToken";
+
+        public static IServiceCollection AddTMDBClientOptions(IServiceCollection services, IConfiguration config)
         {
-            services.AddTransient<ITMDBApiClientOptions>(options);
+            services.AddTransient<ITMDBApiClientOptions>((a)=> new TMDBApiClientOptions
+            {
+                ApiKey = GetSecret(ApiKey, config),
+                ApiToken = GetSecret(ApiToken, config)
+            });
 
             return services;
+        }
+
+        private static string GetSecret(string apiKey, IConfiguration config)
+        {
+            //todo: refactor this: move keys to a secure secretsStore
+            return config[$"ApiKeys:TMDB:{apiKey}"];
         }
     }
 }
