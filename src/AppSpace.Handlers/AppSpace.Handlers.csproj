@@ -6,9 +6,6 @@
     <RootNameSpace>AppSpace.Handlers</RootNameSpace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AppSpace.TMDB.Client\AppSpace.TMDB.Client.csproj" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
