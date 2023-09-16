@@ -5,14 +5,8 @@ using System.Text;
 
 namespace AppSpace.Handlers.Commands
 {
-    public class SmartBillboardCommand : ICommand
+    public class SmartBillboardCommand : SmartBillboardQuery
     {
-        public int SmallRoomsCount { get; set; }
-
-        public int BigRoomsCount { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
+        public IDictionary<string, string> Filters { get; set; }
     }
 }

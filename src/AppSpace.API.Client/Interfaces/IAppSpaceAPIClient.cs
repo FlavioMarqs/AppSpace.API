@@ -61,6 +61,6 @@ namespace AppSpace.API.Interfaces
          * rooms) and returns a suggested movie for each screen. All the movies
          * will be different from one week to the next.
          */
-        Task<SmartBillboardResponse> GetSmartBillboardAsync(ISmartBillboardRequest request);
+        Task<SmartBillboardResponse> GetSmartBillboardAsync(SmartBillboardRequest request);
     }
 }

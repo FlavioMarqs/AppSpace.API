@@ -1,7 +1,8 @@
 ﻿using AppSpace.API.Contracts.Requests;
 using AppSpace.API.Contracts.Responses;
 using AppSpace.Handlers.Commands;
-using AppSpace.Handlers.Interfaces;
+using AppSpace.Handlers.DTOs;
+using AppSpace.TMDB.Contracts.Requests;
 using AutoMapper;
 using System;
 
@@ -11,13 +12,14 @@ namespace AppSpace.RecommendationsService.MappingProfiles
     {
         public RecommendationsMappingProfile() 
         {
-            CreateMap<ISmartBillboardRequest, SmartBillboardCommand>()
-                .ForMember(d => d.StartDate, s => s.MapFrom(o => o.StartTime))
-                .ForMember(d => d.EndDate, s => s.MapFrom(o => o.EndTime))
+            CreateMap<SmartBillboardRequest, SmartBillboardCommand>()
+                .ForMember(d => d.TimeInterval, s => s.MapFrom(o => o.EndTime.Subtract(o.StartTime)))
                 .ForMember(d => d.SmallRoomsCount, s => s.MapFrom(o => o.SmallRoomsScreensCount))
                 .ForMember(d => d.BigRoomsCount, s => s.MapFrom(o => o.BigRoomsScreensCount));
 
-            CreateMap<ISmartBillboardDTO, SmartBillboardResponse>();
+            CreateMap<SmartBillboardDTO, SmartBillboardResponse>();
+
+            CreateMap<MoviesDiscoverRequest, DiscoverMoviesRequest>();
         }
     }
 }
