@@ -26,7 +26,7 @@ namespace AppSpace.RecommendationsService
             services.AddSwaggerGen();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddHandlers();
+            services.AddHandlers(Configuration);
         }
     }
 }

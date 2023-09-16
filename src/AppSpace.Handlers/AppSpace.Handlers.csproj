@@ -6,6 +6,7 @@
     <RootNameSpace>AppSpace.Handlers</RootNameSpace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppSpace.Repositories\AppSpace.Repositories.csproj" />
     <ProjectReference Include="..\AppSpace.TMDB.Client\AppSpace.TMDB.Client.csproj" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
