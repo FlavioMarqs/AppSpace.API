@@ -1,0 +1,7 @@
+﻿group Tests
+coverlet.collector
+FluentAssertions
+Moq
+NUnit
+NUnit3TestAdapter
+Microsoft.Net.Test.Sdk

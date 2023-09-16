@@ -1,0 +1,7 @@
+﻿AutoMapper
+AutoMapper.Extensions.Microsoft.DependencyInjection
+Microsoft.AspNetCore.Mvc
+Microsoft.Extensions.Configuration
+Microsoft.Extensions.DependencyInjection
+Microsoft.Extensions.Hosting
+Swashbuckle.AspNetCore

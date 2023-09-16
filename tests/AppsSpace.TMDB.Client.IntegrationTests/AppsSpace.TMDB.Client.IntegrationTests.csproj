@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	  <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <AssemblyName>AppSpace.TMDB.Client.IntegrationTests</AssemblyName>
+	  <RootNameSpace>AppSpace.TMDB.Client.IntegrationTests</RootNameSpace>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AppSpace.TMDB.Client\AppSpace.TMDB.Client.csproj" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppSpace.API.Contracts.Responses
+namespace AppSpace.Handlers.Interfaces
 {
-    public interface ISmartBillboard
+    public interface ICommand
     {
     }
 }
