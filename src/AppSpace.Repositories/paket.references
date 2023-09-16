@@ -1,0 +1,7 @@
+﻿group Repositories
+
+AutoMapper
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Abstractions
+Microsoft.Extensions.DependencyInjection
