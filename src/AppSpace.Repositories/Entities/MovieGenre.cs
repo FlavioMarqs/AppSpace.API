@@ -6,7 +6,7 @@ namespace AppSpace.Repositories.Entities
 {
     public class MovieGenre
     {
-        public Movie Movie { get; set; }
+        public int Id { get; set; }
 
         public MovieGenre Genre {get; set;}
     }

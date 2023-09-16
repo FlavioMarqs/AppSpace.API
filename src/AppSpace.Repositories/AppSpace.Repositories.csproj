@@ -5,8 +5,8 @@
     <AssemblyName>AppSpace.Repositories</AssemblyName>
     <RootNameSpace>AppSpace.Repositories</RootNameSpace>
   </PropertyGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
   <ItemGroup>
     <ProjectReference Include="..\AppSpace.BeezyTest.Domain\AppSpace.BeezyTest.Domain.csproj" />
   </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

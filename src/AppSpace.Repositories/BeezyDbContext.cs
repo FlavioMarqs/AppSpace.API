@@ -17,12 +17,12 @@ namespace AppSpace.Repositories
         protected override void OnConfiguring(DbContextOptionsBuilder options)
            => options.UseSqlServer(_configuration["Databases:BeezyDBConnectionString"]);
 
-        public DbSet<Cinema> Cinemas { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<MovieGenre> MovieGenres { get; set; }
-        public DbSet<Room> Rooms { get; set; }
-        public DbSet<Session> Sessions { get; set; }
+        public DbSet<Cinema> Cinema { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Genre> Genre { get; set; }
+        public DbSet<Movie> Movie { get; set; }
+        public DbSet<MovieGenre> MovieGenre { get; set; }
+        public DbSet<Room> Room { get; set; }
+        public DbSet<Session> Session { get; set; }
     }
 }

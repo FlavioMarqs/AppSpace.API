@@ -41,7 +41,7 @@ namespace AppsSpace.TMDB.Client.IntegrationTests
         public async Task DiscoverMoviesAsync_Should_Return_Valid_Response(int pageNumber)
         {
             PaginatedResult<TMDBMovieResponse> response = null;
-            Assert.DoesNotThrowAsync(async () => response = await _client.GetMovieDiscovery(pageNumber));
+            Assert.DoesNotThrowAsync(async () => response = await _client.GetMovieDiscovery(new AppSpace.TMDB.Contracts.Requests.DiscoverMoviesRequest() { PageNumber=pageNumber}));
             response.Should().NotBeNull();
             response.PageNumber.Should().Be(pageNumber);
             response.Results.Should().HaveCount(20);

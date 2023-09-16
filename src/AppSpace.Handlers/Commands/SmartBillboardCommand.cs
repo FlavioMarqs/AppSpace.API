@@ -11,6 +11,8 @@ namespace AppSpace.Handlers.Commands
 
         public int BigRoomsCount { get; set; }
 
+        public DateTime StartDate { get; set; }
+
         public DateTime EndDate { get; set; }
     }
 }
