@@ -1,0 +1,13 @@
+﻿AutoMapper
+AutoMapper.Extensions.Microsoft.DependencyInjection
+Microsoft.AspNetCore.Mvc
+Microsoft.AspNetCore.Authorization
+Microsoft.Extensions.Configuration
+Microsoft.Extensions.DependencyInjection
+Microsoft.Extensions.Hosting
+Microsoft.OpenAPI
+Serilog
+Serilog.AspNetCore
+Serilog.Sinks.Console
+Serilog.Sinks.File
+Swashbuckle.AspNetCore
