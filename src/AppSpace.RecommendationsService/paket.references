@@ -5,6 +5,7 @@ Microsoft.AspNetCore.Authorization
 Microsoft.Extensions.Configuration
 Microsoft.Extensions.DependencyInjection
 Microsoft.Extensions.Hosting
+Microsoft.OpenAPI
 Serilog
 Serilog.AspNetCore
 Serilog.Sinks.Console

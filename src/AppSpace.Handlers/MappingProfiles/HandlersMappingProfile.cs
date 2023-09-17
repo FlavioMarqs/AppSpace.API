@@ -18,7 +18,7 @@ namespace AppSpace.Handlers.MappingProfiles
                 .ForMember(d => d.OriginalTitle, s => s.MapFrom(o => o.OriginalTitle))
                 .ForMember(d => d.Id, s => s.MapFrom(o => o.Identifier))
                 .ForMember(d => d.OriginalLanguage, s => s.MapFrom(o => o.Language))
-                .ForMember(d => d.PosterPath, s => s.MapFrom(o => o.PosterPath));
+                .ForMember(d => d.PosterUrl, s => s.MapFrom(o => o.PosterPath));
 
         }
     }

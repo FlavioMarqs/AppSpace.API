@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using AppSpace.TMDB.Contracts.Responses;
 using AppSpace.TMDB.Client.Interfaces;
 using AppSpace.TMDB.Contracts.Requests;
+using Microsoft.Extensions.Options;
 
 namespace AppSpace.TMDB.Client
 {
@@ -39,7 +40,7 @@ namespace AppSpace.TMDB.Client
             var request = new RestRequest("");
             foreach (var kvp in filters)
             {
-                request.AddParameter(kvp.Key, kvp.Value);
+                request.AddQueryParameter(kvp.Key, kvp.Value);
             }
             request.AddHeader("accept", "application/json");
             request.AddHeader("Authorization", $"Bearer {_options.ApiToken}");

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AppSpace.Repositories.Extensions;
 using AppSpace.Handlers.DTOs;
+using AppSpace.TMDB.Client.Extensions;
 
 namespace AppSpace.Handlers.Extensions
 {
@@ -12,6 +13,7 @@ namespace AppSpace.Handlers.Extensions
         public static IServiceCollection AddHandlers(this IServiceCollection services, IConfiguration config)
         {
             services.AddRepositories(config);
+            services.AddTMDBClientOptions(config);
 
             services.AddTransient<ICommandHandler<SmartBillboardCommand, SmartBillboardDTO>, SmartBillboardCommandHandler>();
             services.AddTransient<ICommandHandler<SmartBillboardQuery, SmartBillboardDTO>, SmartBillboardQueryHandler>();

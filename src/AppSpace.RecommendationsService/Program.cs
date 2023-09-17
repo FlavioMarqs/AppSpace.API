@@ -1,9 +1,6 @@
-﻿using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using Microsoft.AspNetCore.Hosting.Builder;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
+using Serilog;
 
 namespace AppSpace.RecommendationsService
 {
@@ -11,11 +8,7 @@ namespace AppSpace.RecommendationsService
     {
         public static void Main(string[] args)
         {
-            var builder = CreateHostBuilder(args);
-            builder.ConfigureServices(services =>
-            {
-                services.AddMvc();
-            }).Build();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -23,6 +16,11 @@ namespace AppSpace.RecommendationsService
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();
-            });
+            })
+            .UseSerilog((context, services, configuration) => configuration
+                .ReadFrom.Configuration(context.Configuration)
+                .ReadFrom.Services(services)
+                .Enrich.FromLogContext()
+                .WriteTo.Console());
     }
 }

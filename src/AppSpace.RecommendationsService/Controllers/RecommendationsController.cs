@@ -32,8 +32,8 @@ namespace AppSpace.RecommendationsService.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet("GetSmartBillboards")]
-        [Consumes(nameof(SmartBillboardRequest))]
+        [HttpPost("CreateSmartBillboards")]
+        //[Consumes(nameof(SmartBillboardRequest))]
         public async Task<IActionResult> GetSmartBillboards(SmartBillboardRequest request)
         {
             if (!request.UseWithFilters)
@@ -45,8 +45,8 @@ namespace AppSpace.RecommendationsService.Controllers
             }
             else
             {
-                var query = _mapper.Map<SmartBillboardCommand>(request);
-                return Ok(_mapper.Map<SmartBillboardResponse>(await _commandHandler.HandleAsync(query)));
+                var command = _mapper.Map<SmartBillboardCommand>(request);
+                return Ok(_mapper.Map<SmartBillboardResponse>(await _commandHandler.HandleAsync(command)));
             }
         }
     }

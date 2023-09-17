@@ -13,7 +13,9 @@ nuget Microsoft.EntityFrameworkCore.SqlServer !~> 5.0.17
 nuget Microsoft.Extensions.Configuration
 nuget Microsoft.Extensions.DependencyInjection
 nuget Microsoft.Extensions.Hosting
+nuget Microsoft.Extensions.Options
 nuget Microsoft.NETCore.App !~> 2.2.0
+nuget Microsoft.OpenAPI
 nuget RestSharp
 nuget Serilog
 nuget Serilog.AspNetCore
