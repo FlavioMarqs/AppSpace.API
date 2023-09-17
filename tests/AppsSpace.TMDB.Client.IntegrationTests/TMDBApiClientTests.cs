@@ -3,6 +3,8 @@ using AppSpace.TMDB.Client.Interfaces;
 using AppSpace.TMDB.Contracts.Responses;
 using FluentAssertions;
 using NUnit.Framework;
+using System;
+using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 namespace AppsSpace.TMDB.Client.IntegrationTests
@@ -41,7 +43,23 @@ namespace AppsSpace.TMDB.Client.IntegrationTests
         public async Task DiscoverMoviesAsync_Should_Return_Valid_Response(int pageNumber)
         {
             PaginatedResult<TMDBMovieResponse> response = null;
-            Assert.DoesNotThrowAsync(async () => response = await _client.GetMovieDiscovery(new AppSpace.TMDB.Contracts.Requests.DiscoverMoviesRequest(), pageNumber));
+            var request = new AppSpace.TMDB.Contracts.Requests.DiscoverMoviesRequest() 
+            { 
+                IncludeAdult = false, 
+                Keywords = new string[] 
+                {
+                    "war",
+                    "science-fiction",
+                    "mystery",
+                    "thriller"
+                },
+                Language = "en",
+                PrimaryReleaseDateGte = DateTime.Parse("2000-01-01"),
+                PrimaryReleaseDateLte = DateTime.Parse("2024-01-01"),
+                SortBy = "vote_average.desc"
+            };
+
+            Assert.DoesNotThrowAsync(async () => response = await _client.GetMovieDiscoveryAsync(request, pageNumber));
             response.Should().NotBeNull();
             response.PageNumber.Should().Be(pageNumber);
             response.Results.Should().HaveCount(20);

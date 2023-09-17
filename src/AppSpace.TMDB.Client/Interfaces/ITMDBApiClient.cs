@@ -7,7 +7,9 @@ namespace AppSpace.TMDB.Client.Interfaces
 {
     public interface ITMDBApiClient
     {
-        Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscovery(DiscoverMoviesRequest request, int pageNumber = 1);
+        Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscoveryAsync(DiscoverMoviesRequest request, int pageNumber = 1);
+
+        Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscoveryAsync(IDictionary<string, string> filters, int pageNumber = 1);
 
         Task<AuthenticationResponse> AuthenticateAsync();
     }

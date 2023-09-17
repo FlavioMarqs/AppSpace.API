@@ -13,6 +13,8 @@ namespace AppSpace.Handlers.Extensions
         {
             services.AddTransient<ICommandHandler<SmartBillboardCommand, SmartBillboardDTO>>();
             services.AddTransient<ICommandHandler<SmartBillboardQuery, SmartBillboardDTO>>();
+            services.AddTransient<ICommandHandler<ComparisonCommand, SmartBillboardDTO>>();
+
 
             services.AddRepositories(config);
 

@@ -29,12 +29,15 @@ namespace AppSpace.TMDB.Client
             return JsonSerializer.Deserialize<AuthenticationResponse>(response.Content);
         }
 
-        public async Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscovery(DiscoverMoviesRequest filters, int pageNumber = 1)
+        public async Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscoveryAsync(DiscoverMoviesRequest discoverMoviesRequest, int pageNumber = 1)
+            => await GetMovieDiscoveryAsync(discoverMoviesRequest.ToDictionary(pageNumber));
+
+        public async Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscoveryAsync(IDictionary<string, string> filters, int pageNumber = 1)
         {
             var options = new RestClientOptions(_options.DiscoverMoviesUrl);
             var restClient = new RestClient(options);
             var request = new RestRequest("");
-            foreach(var kvp in filters.ToDictionary(pageNumber))
+            foreach (var kvp in filters)
             {
                 request.AddParameter(kvp.Key, kvp.Value);
             }
