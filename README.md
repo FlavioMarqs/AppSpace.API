@@ -16,3 +16,23 @@ useful for this case: https://developers.themoviedb.org/3/discover/movie-discove
 * Use the following read-only database for implementing the behavior B.b: (...)
 The criteria “movies successful in the city” can be assumed as “movies in the database with the
 biggest amount of seats sold”
+
+
+## Example of a request to use in SwaggerUI
+
+` {
+  "smallRoomsScreensCount": 2,
+  "bigRoomsScreensCount": 2,
+  "filters": {
+    "includeAdult": true,
+    "releaseDateGte": "2000-09-17T15:30:52.383Z",
+    "releaseDateLte": "2023-09-17T15:30:52.383Z",
+    "keywords": [
+      "mystery"
+    ]
+  },
+  "useWithFilters": true,
+  "startTime": "2023-09-17T15:30:52.383Z",
+  "endTime": "2023-12-17T15:30:52.383Z"
+}
+`
