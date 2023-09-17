@@ -13,6 +13,8 @@ namespace AppSpace.TMDB.Client
 
         public string DiscoverMoviesUrl => $"{BaseUrl}discover/movie";
         
+        public string SearchMoviesUrl => $"{BaseUrl}search/movie";
+
         public string ApiKey { get; set; }
         
         public string ApiToken { get; set; }

@@ -4,7 +4,6 @@ using AppSpace.TMDB.Contracts.Responses;
 using FluentAssertions;
 using NUnit.Framework;
 using System;
-using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 namespace AppsSpace.TMDB.Client.IntegrationTests
@@ -63,6 +62,18 @@ namespace AppsSpace.TMDB.Client.IntegrationTests
             response.Should().NotBeNull();
             response.PageNumber.Should().Be(pageNumber);
             response.Results.Should().HaveCount(20);
+        }
+
+        [TestCase("Pulp Fiction")]
+        [TestCase("Reservoir Dogs")]
+        [TestCase("Se7en")]
+        public async Task SearchMovieByTitleAsync_Should_Return_Expected_Results(string originalTitle)
+        {
+            PaginatedResult<TMDBMovieResponse> response = null;
+            Assert.DoesNotThrowAsync(async () => response = await _client.SearchMovieByTitleAsync(originalTitle));
+            response.Should().NotBeNull();
+            response.PageNumber.Should().Be(1);
+            response.Results.Should().HaveCountGreaterThan(0);
         }
     }
 }

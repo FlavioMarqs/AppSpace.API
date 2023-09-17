@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>AppSpace.RecommendationsService</AssemblyName>
     <RootNameSpace>AppSpace.RecommendationsService</RootNameSpace>
-    <OutputType>Exe</OutputType>
+	  <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppSpace.API.Contracts\AppSpace.API.Contracts.csproj" />
     <ProjectReference Include="..\AppSpace.Handlers\AppSpace.Handlers.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<Content Update="appsettings.json">
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="appsettings.Development.json">
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

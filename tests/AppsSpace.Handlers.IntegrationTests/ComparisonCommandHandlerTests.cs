@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using AppSpace.Handlers.Commands;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,9 @@ namespace AppSpace.Handlers.IntegrationTests
 {
     public class ComparisonCommandHandlerTests
     {
-        private SmartBillboardCommandHandler _commandHandler;
+        private TMDBMovieCommandHandler _movieHandler;
         private SmartBillboardQueryHandler _queryHandler;
-        private ComparisonCommandHandler _comparisonHandler;
+        private ComparisonCommandHandler _handler;
 
         [SetUp]
         public void Setup()

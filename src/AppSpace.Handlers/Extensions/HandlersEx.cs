@@ -11,11 +11,12 @@ namespace AppSpace.Handlers.Extensions
     {
         public static IServiceCollection AddHandlers(this IServiceCollection services, IConfiguration config)
         {
-            services.AddTransient<ICommandHandler<SmartBillboardCommand, SmartBillboardDTO>>();
-            services.AddTransient<ICommandHandler<SmartBillboardQuery, SmartBillboardDTO>>();
-            services.AddTransient<ICommandHandler<ComparisonCommand, SmartBillboardDTO>>();
-
             services.AddRepositories(config);
+
+            services.AddTransient<ICommandHandler<SmartBillboardCommand, SmartBillboardDTO>, SmartBillboardCommandHandler>();
+            services.AddTransient<ICommandHandler<SmartBillboardQuery, SmartBillboardDTO>, SmartBillboardQueryHandler>();
+            services.AddTransient<ICommandHandler<TMDBMovieCommand, MovieDTO>, TMDBMovieCommandHandler>();
+            services.AddTransient<ICommandHandler<ComparisonCommand, SmartBillboardDTO>, ComparisonCommandHandler>();
 
             return services;
         }

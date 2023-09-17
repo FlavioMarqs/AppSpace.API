@@ -46,5 +46,22 @@ namespace AppSpace.TMDB.Client
             var response = await restClient.GetAsync(request);
             return JsonSerializer.Deserialize<PaginatedResult<TMDBMovieResponse>>(response.Content);
         }
+
+        public async Task<PaginatedResult<TMDBMovieResponse>> SearchMovieByTitleAsync(string originalTitle, int releaseYear = 0)
+        {
+            var options = new RestClientOptions(_options.SearchMoviesUrl);
+            var restClient = new RestClient(options);
+            var request = new RestRequest("");
+
+            if(releaseYear > 0)
+                request.AddParameter("primary_release_year", releaseYear);
+            
+            request.AddParameter("query", originalTitle);
+            
+            request.AddHeader("accept", "application/json");
+            request.AddHeader("Authorization", $"Bearer {_options.ApiToken}");
+            var response = await restClient.GetAsync(request);
+            return JsonSerializer.Deserialize<PaginatedResult<TMDBMovieResponse>>(response.Content);
+        }
     }
 }

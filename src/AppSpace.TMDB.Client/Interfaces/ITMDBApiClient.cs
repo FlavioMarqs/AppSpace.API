@@ -11,6 +11,8 @@ namespace AppSpace.TMDB.Client.Interfaces
 
         Task<PaginatedResult<TMDBMovieResponse>> GetMovieDiscoveryAsync(IDictionary<string, string> filters, int pageNumber = 1);
 
+        Task<PaginatedResult<TMDBMovieResponse>> SearchMovieByTitleAsync(string originalTitle, int releaseYear = 0);
+
         Task<AuthenticationResponse> AuthenticateAsync();
     }
 }
