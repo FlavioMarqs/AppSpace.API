@@ -20,7 +20,8 @@ namespace AppSpace.RecommendationsService.Controllers
 
         private readonly IMapper _mapper;
 
-        public RecommendationsController(ICommandHandler<SmartBillboardQuery, SmartBillboardDTO> queryhandler,
+        public RecommendationsController(
+            ICommandHandler<SmartBillboardQuery, SmartBillboardDTO> queryhandler,
             ICommandHandler<SmartBillboardCommand, SmartBillboardDTO> commandHandler,
             ICommandHandler<ComparisonCommand, SmartBillboardDTO> comparisonHandler,
             IMapper mapper)
@@ -31,29 +32,21 @@ namespace AppSpace.RecommendationsService.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet(Name = "GetSmartBillboards")]
-        [Consumes(nameof(SmartBillboardRequest))]
+        [HttpPost("CreateSmartBillboards")]
+        //[Consumes(nameof(SmartBillboardRequest))]
         public async Task<IActionResult> GetSmartBillboards(SmartBillboardRequest request)
         {
-            if (request.UseWithFilters)
+            if (!request.UseWithFilters)
             {
-                var command = _mapper.Map<SmartBillboardCommand>(request);
-                var commandResult = await _commandHandler.HandleAsync(command);
-                var query = _mapper.Map<SmartBillboardQuery>(request);
-                var queryResult = await _queryHandler.HandleAsync(query);
-                var comparisonCommand = new ComparisonCommand()
-                {
-                    QueryResult = queryResult,
-                    CommandResult = commandResult
-                };
-                var result = await _comparisonHandler.HandleAsync(comparisonCommand);
+                var command = _mapper.Map<ComparisonCommand>(request);
+                var result = await _comparisonHandler.HandleAsync(command);
 
                 return Ok(result);
             }
             else
             {
-                var query = _mapper.Map<SmartBillboardQuery>(request);
-                return Ok(_mapper.Map<SmartBillboardResponse>(await _queryHandler.HandleAsync(query)));
+                var command = _mapper.Map<SmartBillboardCommand>(request);
+                return Ok(_mapper.Map<SmartBillboardResponse>(await _commandHandler.HandleAsync(command)));
             }
         }
     }

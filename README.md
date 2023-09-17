@@ -15,9 +15,6 @@ requirements:
 useful for this case: https://developers.themoviedb.org/3/discover/movie-discover
 * Use the following read-only database for implementing the behavior B.b: (...)
 The criteria “movies successful in the city” can be assumed as “movies in the database with the
-<<<<<<< Updated upstream
-biggest amount of seats sold”
-=======
 biggest amount of seats sold”
 
 

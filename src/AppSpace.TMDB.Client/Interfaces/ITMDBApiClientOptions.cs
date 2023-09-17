@@ -12,6 +12,10 @@ namespace AppSpace.TMDB.Client.Interfaces
 
         string DiscoverMoviesUrl { get; }
 
+        string GetMovieImagesUrl(int movieId);
+
+        string SearchMoviesUrl { get; }
+
         string ApiKey { get; set; }
 
         string ApiToken { get; set; }

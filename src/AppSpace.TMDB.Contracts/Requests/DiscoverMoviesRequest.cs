@@ -43,8 +43,8 @@ namespace AppSpace.TMDB.Contracts.Requests
             var dictionary = new Dictionary<string, string>();
             if(pageNumber > 0)
                 dictionary.Add("page", $"{pageNumber}");
-            if (Keywords != null)
-                dictionary.Add("with_keywords", $"{string.Concat(Keywords, ',')}");
+            if (Keywords != null && Keywords.Length > 0)
+                dictionary.Add("with_keywords", $"{string.Join(',', Keywords)}");
             if (IncludeAdult.HasValue)
                 dictionary.Add("include_adult", $"{IncludeAdult}");
             if (!string.IsNullOrWhiteSpace(Language))

@@ -1,3 +1,4 @@
 ﻿RestSharp
-Microsoft.Extensions.DependencyInjection
 Microsoft.Extensions.Configuration
+Microsoft.Extensions.DependencyInjection
+Microsoft.Extensions.Options
