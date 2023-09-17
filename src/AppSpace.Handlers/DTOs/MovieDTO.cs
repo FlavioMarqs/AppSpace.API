@@ -15,5 +15,7 @@ namespace AppSpace.Handlers.DTOs
         public string OriginalLanguage { get; set; }
 
         public bool Adult { get; set; }
+
+        public string PosterPath { get; set; }
     }
 }
