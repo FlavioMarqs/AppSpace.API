@@ -9,13 +9,15 @@ namespace AppSpace.TMDB.Client.Extensions
         private const string ApiKey = "ApiKey";
         private const string ApiToken = "ApiToken";
 
-        public static IServiceCollection AddTMDBClientOptions(IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddTMDBClientOptions(this IServiceCollection services, IConfiguration config)
         {
-            services.AddTransient<ITMDBApiClientOptions>((a)=> new TMDBApiClientOptions
+            services.AddTransient<ITMDBApiClientOptions>((a) => new TMDBApiClientOptions
             {
                 ApiKey = GetSecret(ApiKey, config),
                 ApiToken = GetSecret(ApiToken, config)
             });
+
+            services.AddTransient<ITMDBApiClient, TMDBApiClient>();
 
             return services;
         }
@@ -23,7 +25,7 @@ namespace AppSpace.TMDB.Client.Extensions
         private static string GetSecret(string apiKey, IConfiguration config)
         {
             //todo: refactor this: move keys to a secure secretsStore
-            return config[$"ApiKeys:TMDB:{apiKey}"];
+            return config[$"TMDBApiClientOptions:{apiKey}"];
         }
     }
 }

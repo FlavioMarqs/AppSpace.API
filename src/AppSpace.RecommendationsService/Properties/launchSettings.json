@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AppSpace.RecommendationsService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

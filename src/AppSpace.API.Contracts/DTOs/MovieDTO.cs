@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppSpace.Handlers.DTOs
+namespace AppSpace.API.Contracts.DTOs
 {
     public class MovieDTO
     {
