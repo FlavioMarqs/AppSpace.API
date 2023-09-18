@@ -9,16 +9,17 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Configuration;
+using System.Reflection;
 
 namespace AppSpace.RecommendationsService
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; set; }
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
@@ -27,15 +28,12 @@ namespace AppSpace.RecommendationsService
             
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => {
                     c.SwaggerEndpoint("swagger/v1/swagger.json", "API V1");
                     c.RoutePrefix = "";
                 });
             }
-
-            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

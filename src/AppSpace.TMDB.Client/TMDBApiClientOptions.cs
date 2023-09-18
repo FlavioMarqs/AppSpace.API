@@ -15,7 +15,7 @@ namespace AppSpace.TMDB.Client
         
         public string SearchMoviesUrl => $"{BaseUrl}search/movie";
 
-        public string GetMovieImagesUrl(int movieId) => $"{BaseUrl}movies/{movieId}/images";
+        public string GetMovieImagesUrl(int movieId) => $"{BaseUrl}movie/{movieId}/images";
 
         public string ApiKey { get; set; }
         

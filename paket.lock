@@ -1,5 +1,5 @@
 STORAGE: NONE
-RESTRICTION: || (== net5.0) (== netcoreapp3.1)
+RESTRICTION: == netcoreapp3.1
 NUGET
   remote: https://api.nuget.org/v3/index.json
     Autofac (7.1)
@@ -11,8 +11,7 @@ NUGET
       Microsoft.Extensions.Options (>= 6.0)
     Azure.Core (1.35)
       Microsoft.Bcl.AsyncInterfaces (>= 1.1.1)
-      System.Diagnostics.DiagnosticSource (>= 4.6) - restriction: == netcoreapp3.1
-      System.Diagnostics.DiagnosticSource (>= 6.0.1) - restriction: || (== net5.0) (&& (== netcoreapp3.1) (>= net461)) (&& (== netcoreapp3.1) (>= net5.0)) (&& (== netcoreapp3.1) (< netcoreapp2.1))
+      System.Diagnostics.DiagnosticSource (>= 4.6)
       System.Memory.Data (>= 1.0.2)
       System.Numerics.Vectors (>= 4.5)
       System.Text.Encodings.Web (>= 4.7.2)
