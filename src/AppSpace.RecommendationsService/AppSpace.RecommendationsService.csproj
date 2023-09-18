@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,6 +6,7 @@
     <RootNameSpace>AppSpace.RecommendationsService</RootNameSpace>
 	<OutputType>Exe</OutputType>
 	<PlatformTarget>x64</PlatformTarget>
+	<UserSecretsId>95c255b9-e092-47ee-8827-f6acf10438cd</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppSpace.API.Contracts\AppSpace.API.Contracts.csproj" />

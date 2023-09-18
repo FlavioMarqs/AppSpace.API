@@ -30,11 +30,14 @@ namespace AppSpace.TMDB.Client
             return JsonSerializer.Deserialize<AuthenticationResponse>(response.Content);
         }
 
-        public async Task<TMDBMovieImageResponse> GetImagesForMovie(int movieId)
+        public async Task<TMDBMovieImageResponse> GetImagesForMovie(int movieId, string language)
         {
-            var options = new RestClientOptions(_options.GetMovieImagesUrl(movieId));
+            var url = _options.GetMovieImagesUrl(movieId);
+            var options = new RestClientOptions(url);
             var restClient = new RestClient(options);
             var request = new RestRequest("");
+            if (!string.IsNullOrWhiteSpace(language))
+                request.AddParameter("language", language);
             request.AddHeader("accept", "application/json");
             request.AddHeader("Authorization", $"Bearer {_options.ApiToken}");
             var response = await restClient.GetAsync(request);
