@@ -39,9 +39,9 @@ namespace AppSpace.Handlers
         private async Task<IList<Week<MovieDTO>>> GetMovies(int weekCount, int roomsCount, IDictionary<string, string> filters, int skip = 0)
         {
             var weeklyMoviesForRoom = new List<Week<MovieDTO>>();
-            for (int week = 0; week < weekCount; week++)
+            for (int week = 1; week <= weekCount; week++)
             {
-                weeklyMoviesForRoom.Add(await GetMoviesForWeek(week+1, roomsCount, filters, skip));
+                weeklyMoviesForRoom.Add(await GetMoviesForWeek(week, roomsCount, filters, skip));
                 skip += (roomsCount);
             }
 

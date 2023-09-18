@@ -45,6 +45,7 @@ namespace AppSpace.Handlers.IntegrationTests
         [TestCase(2, 2, 1)]
         [TestCase(2, 2, 2)]
         [TestCase(7, 8, 71)]
+        [TestCase(17, 18, 180)]
         public async Task HandleAsync_Should_Return_Expected_Results(int smallRoomsCount, int bigRoomsCount, int daysDuration)
         {
             var command = new SmartBillboardCommand
