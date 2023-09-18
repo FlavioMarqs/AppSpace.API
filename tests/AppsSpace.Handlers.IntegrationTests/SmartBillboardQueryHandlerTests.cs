@@ -29,7 +29,7 @@ namespace AppSpace.Handlers.IntegrationTests
             config.Setup(d => d["Databases:BeezyDBConnectionString"]).Returns("Server=tcp:beezybetest.database.windows.net,1433;Initial Catalog=beezycinema;Persist Security Info=False;User ID=betestuser;Password=ReadOnly!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             
             var dbContext = new BeezyDbContext(config.Object);
-
+            var moviesRepository = new TopRatedMoviesRepository(dbContext);
             MapperConfiguration mapperConfig = new MapperConfiguration(
                     cfg =>
                     {
@@ -37,12 +37,13 @@ namespace AppSpace.Handlers.IntegrationTests
                     });
 
             IMapper mapper = new Mapper(mapperConfig);
-            _handler = new SmartBillboardQueryHandler(mapper, dbContext);
+            _handler = new SmartBillboardQueryHandler(mapper, moviesRepository);
         }
 
         [TestCase(1, 3, 3)]
         [TestCase(1, 3, 21)]
         [TestCase(4, 7, 22)]
+        [TestCase(10, 10, 91)]
         public async Task HandleAsync_Should_Return_ExpectedData(int smallRoomsCount, int bigRoomsCount, int daysInterval)
         {
             var command = new SmartBillboardCommand()
