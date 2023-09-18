@@ -16,7 +16,6 @@ namespace AppSpace.Handlers.IntegrationTests
     public class TMDBMovieCommandHandlerTests
     {
         private TMDBMovieCommandHandler _handler;
-        private BeezyDbContext _dbContext;
 
         [SetUp] 
         public void SetUp() 

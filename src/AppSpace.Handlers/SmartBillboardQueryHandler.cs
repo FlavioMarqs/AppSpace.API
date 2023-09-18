@@ -48,9 +48,9 @@ namespace AppSpace.Handlers
         private async Task<IEnumerable<Week<MovieDTO>>> GetMovies(int weekCount, int roomsCount, string roomSize)
         {
             var weeklyMoviesForRoom = new List<Week<MovieDTO>>();
-            for(int i= 0; i < weekCount; i++)
+            for(int week= 1; week <= weekCount; week++)
             {
-                weeklyMoviesForRoom.Add(await GetMoviesForWeek(i, roomsCount, roomSize));
+                weeklyMoviesForRoom.Add(await GetMoviesForWeek(week, roomsCount, roomSize));
             }
 
             return weeklyMoviesForRoom;

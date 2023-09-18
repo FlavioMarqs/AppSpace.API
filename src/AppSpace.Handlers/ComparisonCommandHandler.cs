@@ -79,6 +79,11 @@ namespace AppSpace.Handlers
                     {
                         moviesToAdd.Add(updatedMovies.First(d => d.OriginalTitle.Equals(weeklyMovie.OriginalTitle)));
                     }
+                    else
+                    {
+                        //default behaviour to add a random movie
+                        moviesToAdd.Add(updatedMovies.Where(d => !moviesToAdd.Any(f => d.OriginalTitle.Equals(f.OriginalTitle))).First());
+                    }
                 }
                 var weeklyDataToReturn = new Week<MovieDTO>(weeklyMovies.WeekNumber, moviesToAdd);
                 updatedWeeklyMovies.Add(weeklyDataToReturn);
