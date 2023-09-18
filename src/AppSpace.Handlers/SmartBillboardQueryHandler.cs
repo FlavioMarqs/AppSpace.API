@@ -2,9 +2,9 @@
 using AppSpace.Handlers.DTOs;
 using AppSpace.Handlers.Interfaces;
 using AppSpace.Repositories;
-using AppSpace.TMDB.Client.Interfaces;
+using AppSpace.Repositories.Interfaces;
 using AutoMapper;
-using Microsoft.VisualBasic;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,40 +16,41 @@ namespace AppSpace.Handlers
     public class SmartBillboardQueryHandler : ICommandHandler<SmartBillboardQuery, SmartBillboardDTO>
     {
         private readonly IMapper _mapper;
-        private readonly BeezyDbContext _dbContext;
+        private readonly ITopRatedMoviesRepository _moviesRepository;
         
-        public SmartBillboardQueryHandler(IMapper mapper, BeezyDbContext dbContext) 
+        public SmartBillboardQueryHandler(IMapper mapper, ITopRatedMoviesRepository moviesRepository) 
         { 
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _moviesRepository = moviesRepository ?? throw new ArgumentNullException(nameof(moviesRepository));
         }
-        public Task<SmartBillboardDTO> HandleAsync(SmartBillboardQuery command)
+        public async Task<SmartBillboardDTO> HandleAsync(SmartBillboardQuery command)
         {
             var weekCount = command.TimeInterval.Days % 7 == 0 ? command.TimeInterval.Days / 7 : command.TimeInterval.Days / 7 + 1;
-            var smallRoomSuggestedBillboards = GetMovies(weekCount, command.SmallRoomsCount, "Small");
-            var bigRoomSuggestedBillboards = GetMovies(weekCount, command.BigRoomsCount, "Big");
+            var smallRoomSuggestedBillboards = await GetMovies(weekCount, command.SmallRoomsCount, "Small");
+            var bigRoomSuggestedBillboards = await GetMovies(weekCount, command.BigRoomsCount, "Big");
 
-            return Task.FromResult(new SmartBillboardDTO()
+            return new SmartBillboardDTO()
             {
                 SmallRoomMovies = smallRoomSuggestedBillboards,
                 BigRoomMovies = bigRoomSuggestedBillboards
-            });
+            };
         }
 
-        private Week<MovieDTO> GetMoviesForWeek(int weekNumber, int roomsCount, string roomSize)
+        private async Task<Week<MovieDTO>> GetMoviesForWeek(int weekNumber, int roomsCount, string roomSize)
         {
-            var results = _dbContext.Session.Where(d => d.Room.Size.Equals(roomSize)).OrderByDescending(d => d.SeatsSold).Skip(weekNumber * roomsCount).Take(roomsCount).Select(d => d.Movie).ToList();
-            var weeklyData = new Week<MovieDTO>(weekNumber, _mapper.Map<IList<MovieDTO>>(results));
+            var movies = await _moviesRepository.GetTopRatedMoviesAsync(weekNumber, roomsCount, roomSize);
+
+            var weeklyData = new Week<MovieDTO>(weekNumber, _mapper.Map<IList<MovieDTO>>(movies));
 
             return weeklyData;
         }
 
-        private IEnumerable<Week<MovieDTO>> GetMovies(int weekCount, int roomsCount, string roomSize)
+        private async Task<IEnumerable<Week<MovieDTO>>> GetMovies(int weekCount, int roomsCount, string roomSize)
         {
             var weeklyMoviesForRoom = new List<Week<MovieDTO>>();
-            for(int i= 0; i < weekCount; i++)
+            for(int week= 1; week <= weekCount; week++)
             {
-                weeklyMoviesForRoom.Add(GetMoviesForWeek(i, roomsCount, roomSize));
+                weeklyMoviesForRoom.Add(await GetMoviesForWeek(week, roomsCount, roomSize));
             }
 
             return weeklyMoviesForRoom;
