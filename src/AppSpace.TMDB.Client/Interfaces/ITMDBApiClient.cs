@@ -13,7 +13,7 @@ namespace AppSpace.TMDB.Client.Interfaces
 
         Task<PaginatedResult<TMDBMovieResponse>> SearchMovieByTitleAsync(string originalTitle, int releaseYear = 0);
 
-        Task<TMDBMovieImageResponse> GetImagesForMovie(int movieId);
+        Task<TMDBMovieImageResponse> GetImagesForMovie(int movieId, string language);
 
         Task<AuthenticationResponse> AuthenticateAsync();
     }

@@ -15,6 +15,7 @@ namespace AppSpace.Handlers.Extensions
             services.AddRepositories(config);
             services.AddTMDBClientOptions(config);
 
+            services.AddTransient<ICommandHandler<PosterRequestCommand, string>, PosterRequestCommandHandler>();
             services.AddTransient<ICommandHandler<SmartBillboardCommand, SmartBillboardDTO>, SmartBillboardCommandHandler>();
             services.AddTransient<ICommandHandler<SmartBillboardQuery, SmartBillboardDTO>, SmartBillboardQueryHandler>();
             services.AddTransient<ICommandHandler<TMDBMovieCommand, MovieDTO>, TMDBMovieCommandHandler>();

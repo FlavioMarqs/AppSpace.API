@@ -16,6 +16,7 @@ namespace AppSpace.Handlers
     {
         private readonly IMapper _mapper;
         private readonly ITMDBApiClient _client;
+        private const string _defaultLanguage = "en";
 
         public SmartBillboardCommandHandler(IMapper mapper, ITMDBApiClient client)
         {
@@ -55,6 +56,7 @@ namespace AppSpace.Handlers
             while (pageNumber <= (roomsCount * weekNumber))
             {
                 var clientResults = await _client.GetMovieDiscoveryAsync(filters, pageNumber);
+       
                 results.AddRange(_mapper.Map<IEnumerable<MovieDTO>>(clientResults.Results).Skip(skip).Take(roomsCount - clientResults.Results.Count() > 0 ? roomsCount - clientResults.Results.Count() : roomsCount - results.Count));
                 if (clientResults.TotalPages > pageNumber && results.Count() < roomsCount)
                 {     
@@ -68,8 +70,16 @@ namespace AppSpace.Handlers
             }
 
             var weeklyData = new Week<MovieDTO>(weekNumber, results);
-
+            await FillPosterForWeeklyMovies(weeklyData);
             return weeklyData;
+        }
+
+        private async Task FillPosterForWeeklyMovies(Week<MovieDTO> weeklyData)
+        {
+            foreach (var movie in weeklyData.Values)
+            {
+           
+            }
         }
     }
 }

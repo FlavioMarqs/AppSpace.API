@@ -22,13 +22,18 @@ biggest amount of seats sold”
 
 ## Instructions
 It is necessary to install `paket` as the Package Dependency manager: `dotnet tool restore` on .sln root (https://fsprojects.github.io/Paket/get-started.html#NET-Core-preferred)
+
 Then, on the .sln folder, run `paket restore`
+
 Make sure the necessary .NetCore3.1 & .Net5 runtimes/SDKs are installed
+
 Run the solution with `AppSpace.RecommendationsService` as the Startup project
+
 Go to `http://localhost:5000/index.html` and paste the request example below
 
 
-` {
+` 
+{
   "smallRoomsScreensCount": 2,
   "bigRoomsScreensCount": 2,
   "filters": {
@@ -64,5 +69,8 @@ Those have been moved to the `secrets.json` file associated with the `AppSpace.R
 
 ## Known Limitations
 
-Due to time constraints, a single image will be used for each Movie (its default image).
+A single image will be used for each Movie in its Original Language. This can be customized at a later date, to allow for other languages.
+
 Each room can have the same movie that was presented in a different room in a previous week.
+
+The endpoint calls can take a while to return a response (~10-30 seconds); please be patient, as we're not using caching mechanisms.
