@@ -33,7 +33,7 @@ namespace AppSpace.RecommendationsService.Controllers
         }
 
         [HttpPost("CreateSmartBillboards")]
-        public async Task<IActionResult> GetSmartBillboards(SmartBillboardRequest request)
+        public async Task<IActionResult> CreateSmartBillboards(SmartBillboardRequest request)
         {
             if (!request.UseWithFilters)
             {
