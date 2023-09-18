@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AppSpace.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,8 @@ namespace AppSpace.Repositories.Extensions
                 options.EnableServiceProviderCaching();
                 options.UseSqlServer(config["Databases:BeezyDBConnectionString"]);
             });
+
+            services.AddTransient<ITopRatedMoviesRepository, TopRatedMoviesRepository>();
         }
     }
 }
